@@ -1,0 +1,24 @@
+head_z e3 e3 e3
+head_x e1 e1 e1
+r_shoulder_x e1  e1 e1
+r_shoulder_z e3? e2 e2
+r_arm_1 e2? X   e2  (inv_sh@arm)
+r_arm_2 e3? e3? X
+l_shoulder_x e1  e1 e1
+l_shoulder_z e3? e2 e2
+l_arm_1 e2? X e1?
+l_arm_2 e3? X X
+r_leg_1 e2? (rthigh) e3 (rthigh) e2? (rthigh)
+r_leg_2 e3? (rthigh) e2 (rthigh) e2  (rshank)
+r_leg_3 e1? (rthigh) e1 (rthigh) e1? (rthigh)
+r_foot_1 X X            X               e1 (inv_thigh@shank)
+r_foot_2 X e1? (shank)  e1? (rshank)    e1 (inv_shank@foot)
+r_foot_3 X e1?          X
+extra_foot
+l_leg_1 e2? (lthigh) e3 (lthigh) X
+l_leg_2 e3? (lthigh) e2 (lthigh) e3? (lthigh)
+l_leg_3 e1? (lthigh) e1 (lthigh) e1  (lthigh)
+l_foot_1 X X            X
+l_foot_2 X e1? (shank)  X
+l_foot_3 X e1?          X
+extra_foot
