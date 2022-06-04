@@ -203,7 +203,7 @@ for joint in joints:
     
 
     h = np.array(arr).reshape(4,4).T
-    print(h)
+    print(f"{h = }")
     u0 = h[0,0:3]
     u1 = h[1,0:3]
     u2 = h[2,0:3]
