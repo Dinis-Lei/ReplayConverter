@@ -124,7 +124,7 @@ def test(h, r):
     print(np.around(e[0]*180/np.pi,2), np.around(e[1]*180/np.pi,2), np.around(e[2]*180/np.pi,2))
     return T1
 
-f = open("test1.json", "r")
+f = open("test2.json", "r")
 data = json.load(f)
 
 
@@ -200,19 +200,19 @@ print(5*"-")
 #test(ar,b)
 
 #shh = test(sh, h)
-shb = test(sh, b) # 3, 4
+#shb = test(sh, b) # 3, 4
 #
 #print("--------")
-#test(ar, h)
+# test(ar, h)
 test(ar, b)
 test(ar, sh)
-test(ar,rot_y(np.pi/2)@sh)
-test(ar,rot_y(np.pi/2)@b)
-print(5*"-")
-test(rot_y(np.pi/2)@ar,sh)
-test(rot_y(np.pi/2)@ar,b)
-print(5*"-")
-test(np.linalg.inv(sh)@ar, b)
+# test(ar,rot_y(np.pi/2)@sh)
+# test(ar,rot_y(np.pi/2)@b)
+# print(5*"-")
+# test(rot_y(np.pi/2)@ar,sh)
+# test(rot_y(np.pi/2)@ar,b)
+# print(5*"-")
+# test(np.linalg.inv(sh)@ar, b)
 
 # for i in range(1, 5):
 
@@ -254,26 +254,26 @@ test(np.linalg.inv(sh)@ar, b)
 #     test(ar, rot_z(np.pi/i)@np.linalg.inv(sh)@b)
 #     test(ar, np.linalg.inv(sh)@rot_z(np.pi/i)@b)
 
-test(ar, np.linalg.inv(b)@sh)
+#test(ar, np.linalg.inv(b)@sh)
 
-for i in range(1, 5):
+# for i in range(1, 5):
 
-    print(5*"-",i)
+#     print(5*"-",i)
 
-    test(rot_x(np.pi/i)@ar, np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(rot_x(np.pi/i)@b)@sh)
-    test(ar, rot_x(np.pi/i)@np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(b)@rot_x(np.pi/i)@sh)
+#     test(rot_x(np.pi/i)@ar, np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(rot_x(np.pi/i)@b)@sh)
+#     test(ar, rot_x(np.pi/i)@np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(b)@rot_x(np.pi/i)@sh)
 
-    test(rot_y(np.pi/i)@ar, np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(rot_y(np.pi/i)@b)@sh)
-    test(ar, rot_y(np.pi/i)@np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(b)@rot_y(np.pi/i)@sh)
+#     test(rot_y(np.pi/i)@ar, np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(rot_y(np.pi/i)@b)@sh)
+#     test(ar, rot_y(np.pi/i)@np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(b)@rot_y(np.pi/i)@sh)
 
-    test(rot_z(np.pi/i)@ar, np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(rot_z(np.pi/i)@b)@sh)
-    test(ar, rot_z(np.pi/i)@np.linalg.inv(b)@sh)
-    test(ar, np.linalg.inv(b)@rot_z(np.pi/i)@sh)
+#     test(rot_z(np.pi/i)@ar, np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(rot_z(np.pi/i)@b)@sh)
+#     test(ar, rot_z(np.pi/i)@np.linalg.inv(b)@sh)
+#     test(ar, np.linalg.inv(b)@rot_z(np.pi/i)@sh)
 
 # print(5*"-")
 # test(np.linalg.inv(sh)@ar, shb)
