@@ -124,7 +124,11 @@ def test(h, r):
     print(np.around(e[0]*180/np.pi,2), np.around(e[1]*180/np.pi,2), np.around(e[2]*180/np.pi,2))
     return T1
 
-f = open("test2.json", "r")
+
+FILE = "test3.json"
+
+
+f = open(FILE, "r")
 data = json.load(f)
 
 
@@ -136,7 +140,7 @@ tmp = np.array(arr).reshape(4,4).T
 rep = data['rep']
 l = rep.split(" ")
 for i in range(len(l)):
-    if i+1 in [3,4,5,6]:
+    if i+1 in [11, 12, 13,14,15,16]:
         print(f"{i+1}:{l[i]}")
 
 #print(rot_x(np.pi/2))
@@ -175,8 +179,52 @@ h = np.array(h_arr).reshape(4,4).T
 
 #b = np.linalg.inv(tmp)@b
 
+# sprint(5*"-")
+# stest(t, rot_z(np.pi/2)@b)
+# stest(t, rot_y(np.pi/2)@b)
+# stest(t, rot_x(np.pi/2)@b)
+
 print(5*"-")
-#test(t, b) # 13
+test(t, b) # 13?, 11?
+test(s, b) # 12
+test(f, b)
+
+print(5*"-")
+test(t, rot_z(np.pi/4)@b)
+test(rot_z(np.pi/4)@t, b)
+
+print(5*"-")
+test(t, rot_y(np.pi/4)@b)
+test(rot_y(np.pi/4)@t, b)
+
+print(5*"-")
+test(t, rot_x(np.pi/4)@b)
+test(rot_x(np.pi/4)@t, b)
+
+print(5*"-")
+test(t, rot_x(-np.pi/4)@rot_z(np.pi/4)@b)
+test(t, rot_z(np.pi/4)@rot_x(-np.pi/4)@b)
+
+test(rot_x(-np.pi/4)@rot_z(np.pi/4)@t, b)
+test(rot_z(np.pi/4)@rot_x(-np.pi/4)@t, b)
+
+#print(5*"-")
+#test(t, h)
+#test(s, h)
+#test(f, h)
+#
+#print(5*"-")
+#test(s,t) # 14
+#test(f,t) # 16?
+#
+#print(5*"-")
+#test(f,s) # 15
+#test(t,s) 
+#
+#print(5*"-")
+#test(t,f)
+#test(s,f)
+
 #test(t,np.linalg.inv(b)@b)
 #test(f, b)
 #test(t, rot_x(-np.pi/4)@rot_z(np.pi/4)@b)
@@ -197,22 +245,13 @@ print(5*"-")
 # test(b, x)
 # test(x, b)
 
-#test(ar,b)
+# print(5*"-")
+# test(sh,b) # 3, 4
+# test(ar,b)
+# print(5*"-")
+# test(ar, sh) # 5, 6
+# test(sh, ar)
 
-#shh = test(sh, h)
-#shb = test(sh, b) # 3, 4
-#
-#print("--------")
-# test(ar, h)
-test(ar, b)
-test(ar, sh)
-# test(ar,rot_y(np.pi/2)@sh)
-# test(ar,rot_y(np.pi/2)@b)
-# print(5*"-")
-# test(rot_y(np.pi/2)@ar,sh)
-# test(rot_y(np.pi/2)@ar,b)
-# print(5*"-")
-# test(np.linalg.inv(sh)@ar, b)
 
 # for i in range(1, 5):
 

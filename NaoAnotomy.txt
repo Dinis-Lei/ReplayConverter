@@ -2,8 +2,8 @@ head_z e3 e3 e3
 head_x e1 e1 e1
 r_shoulder_x e1  e1 e1
 r_shoulder_z e3? e2 e2
-r_arm_1 e2? X   e2  (inv_sh@arm)
-r_arm_2 e3? e3? e3  (inv_sh@arm)
+r_arm_1 e2? X   -e2  (inv_sh@arm)
+r_arm_2 e3? e3? -e3  (inv_sh@arm)
 l_shoulder_x e1  e1 e1
 l_shoulder_z e3? e2 e2
 l_arm_1 e2? X e1?
