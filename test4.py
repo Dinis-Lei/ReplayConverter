@@ -55,6 +55,8 @@ def rot_y(val):
 def rot_z(val):
     return np.array([np.cos(val), -np.sin(val), 0, 0, np.sin(val), np.cos(val), 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]).reshape(4,4)
 
+
+
 #print(rot_y(-np.pi/4))
 #print(rot_x(np.pi/4))
 #print(rot_z(np.pi/4))
@@ -125,23 +127,27 @@ def test(h, r):
     return T1
 
 
-FILE = "test3.json"
+FILE = "samples/sample1-L3.json"
 
 
 f = open(FILE, "r")
 data = json.load(f)
 
 
+with open("samples/reps.json", "r") as repfile: 
+    repdata = json.load(repfile)
+
+
 tmp_s = "-1 3.82137e-15 8.74228e-08 -0 8.74228e-08 4.37114e-08 1 0 0 1 -4.37114e-08 0 0 0 0 1"
 arr = [float(x) for x in tmp_s.split(" ")]
 tmp = np.array(arr).reshape(4,4).T
 
-
-rep = data['rep']
-l = rep.split(" ")
-for i in range(len(l)):
-    if i+1 in [11, 12, 13,14,15,16]:
-        print(f"{i+1}:{l[i]}")
+print(repdata[2])
+rep = [float(x) for x in repdata[2].split(" ")]
+#l = rep.split(" ")
+for i in range(len(rep)):
+    if i+1 in [11,12,13,14,15,16]:
+        print(f"{i+1}:{rep[i]}")
 
 #print(rot_x(np.pi/2))
 
@@ -154,35 +160,35 @@ arm = data['arm']
 head = data['head']
 
 
-b_arr = [float(x) for x in body.split(" ")]
-t_arr = [float(x) for x in thigh.split(" ")]
-s_arr = [float(x) for x in shank.split(" ")]
-f_arr = [float(x) for x in foot.split(" ")]
+#b_arr = [float(x) for x in body.split(" ")]
+#t_arr = [float(x) for x in thigh.split(" ")#]
+#s_arr = [float(x) for x in shank.split(" ")#]
+#f_arr = [float(x) for x in foot.split(" ")]#
 
-sh_arr =[float(x) for x in shoulder.split(" ")]
-ar_arr =[float(x) for x in arm.split(" ")]
-h_arr = [float(x) for x in head.split(" ")]
+#sh_arr =[float(x) for x in shoulder.split(" ")]
+#ar_arr =[float(x) for x in arm.split(" ")]
+#h_arr = [float(x) for x in head.split(" ")]
 
-b = np.array(b_arr).reshape(4,4).T
+b = np.array(body).reshape(4,4).T
 # print(b)
 
 # -0.10842   0.990829   -0.0806452 -14.5057 
 # -0.994001  -0.109226  -0.00563375 5.47707e-05 
 # -0.0143906 0.0795506  0.996727    0.356331
 # 0          0          0           1
-t = np.array(t_arr).reshape(4,4).T
-s = np.array(s_arr).reshape(4,4).T
-f = np.array(f_arr).reshape(4,4).T
-sh= np.array(sh_arr).reshape(4,4).T
-ar= np.array(ar_arr).reshape(4,4).T
-h = np.array(h_arr).reshape(4,4).T
+t = np.array(thigh).reshape(4,4).T
+s = np.array(shank).reshape(4,4).T
+f = np.array(foot).reshape(4,4).T
+sh= np.array(shoulder).reshape(4,4).T
+ar= np.array(arm).reshape(4,4).T
+h = np.array(head).reshape(4,4).T
 
 #b = np.linalg.inv(tmp)@b
 
-# sprint(5*"-")
-# stest(t, rot_z(np.pi/2)@b)
-# stest(t, rot_y(np.pi/2)@b)
-# stest(t, rot_x(np.pi/2)@b)
+# print(5*"-")
+# test(t, rot_z(np.pi/2)@b)
+# test(t, rot_y(np.pi/2)@b)
+# test(t, rot_x(np.pi/2)@b)
 
 print(5*"-")
 test(t, b) # 13?, 11?
@@ -192,21 +198,53 @@ test(f, b)
 print(5*"-")
 test(t, rot_z(np.pi/4)@b)
 test(rot_z(np.pi/4)@t, b)
-
 print(5*"-")
-test(t, rot_y(np.pi/4)@b)
-test(rot_y(np.pi/4)@t, b)
-
-print(5*"-")
-test(t, rot_x(np.pi/4)@b)
-test(rot_x(np.pi/4)@t, b)
-
+test(t, rot_x(-np.pi/4)@b)
+test(rot_x(-np.pi/4)@t, b)
 print(5*"-")
 test(t, rot_x(-np.pi/4)@rot_z(np.pi/4)@b)
-test(t, rot_z(np.pi/4)@rot_x(-np.pi/4)@b)
-
 test(rot_x(-np.pi/4)@rot_z(np.pi/4)@t, b)
+print(5*"-")
+test(t, rot_z(np.pi/4)@rot_x(-np.pi/4)@b)
 test(rot_z(np.pi/4)@rot_x(-np.pi/4)@t, b)
+print(5*"-")
+test(rot_z(np.pi/4)@t, rot_x(-np.pi/4)@b)
+test(rot_x(-np.pi/4)@t, rot_z(np.pi/4)@b)
+
+print(5*"-")
+test(rot_z(np.pi/4)@t, rot_x(np.pi/4)@b)
+test(rot_x(np.pi/4)@t, rot_z(np.pi/4)@b)
+
+print(5*"-")
+test(b, rot_z(np.pi/4)@t)
+test(rot_z(np.pi/4)@b, t)
+print(5*"-")
+test(b, rot_x(-np.pi/4)@t)
+test(rot_x(-np.pi/4)@b, t)
+print(5*"-")
+test(b, rot_x(-np.pi/4)@rot_z(np.pi/4)@t)
+test(rot_x(-np.pi/4)@rot_z(np.pi/4)@b, t)
+print(5*"-")
+test(b, rot_z(np.pi/4)@rot_x(-np.pi/4)@t)
+test(rot_z(np.pi/4)@rot_x(-np.pi/4)@b, t)
+print(5*"-")
+test(rot_z(np.pi/4)@b, rot_x(-np.pi/4)@t)
+test(rot_x(-np.pi/4)@b, rot_z(np.pi/4)@t)
+
+# print(5*"-")
+# test(t, rot_y(np.pi/4)@b)
+# test(rot_y(np.pi/4)@t, b)
+
+# print(5*"-")
+# test(t, rot_x(np.pi/4)@b)
+# test(rot_x(np.pi/4)@t, b)
+
+# print(5*"-")
+# test(t, rot_x(-np.pi/4)@rot_z(np.pi/4)@b)
+# test(t, rot_z(np.pi/4)@rot_x(-np.pi/4)@b)
+
+# test(rot_x(-np.pi/4)@rot_z(np.pi/4)@t, b)
+# test(rot_z(np.pi/4)@rot_x(-np.pi/4)@t, b)
 
 #print(5*"-")
 #test(t, h)

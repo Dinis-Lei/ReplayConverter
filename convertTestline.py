@@ -88,6 +88,9 @@ def printNode(node="", depth=0):
     return line, remainder
 
 
+
+
+
 # # Line fecha na mesma linha
 # if next_parenthesis_close_position < next_parenthesis_start_position or depth == 10:
 #     retIdx = next_parenthesis_close_position+1
@@ -116,8 +119,23 @@ def main(args):
                 line = inp.readline()
                 out.write("\n ------ New Line ------ \n\n")
                 if line:
-                    line_converted = printNode(line)
-                    out.write(line_converted[0])
+                    #line_converted = printNode(line)
+                    #out.write(line_converted[0])
+                    tabs = 0
+                    for char in line:
+                        if char == "(":
+                            out.write("\n"+tabs*"\t")
+                            out.write(char + "\n")
+                            tabs += 1
+                            out.write(tabs*"\t")
+                        elif char == ")":
+                            out.write("\n")
+                            tabs -= 1
+                            out.write(tabs*"\t" + char)
+                        else:
+                            out.write(char)
+
+
                 else: break
             print("Finished convertion!")
             
